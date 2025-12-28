@@ -1,8 +1,3 @@
-# Generated from: Global Water Scarcity & Freshwater Quality Analysis Using Data Mining Techniques (1).ipynb
-# Converted at: 2025-12-25T18:31:59.894Z
-# Next step (optional): refactor into modules & generate tests with RunCell
-# Quick start: pip install runcell
-
 # ============================================================
 # STEP 1: ENVIRONMENT SETUP & LIBRARY IMPORTS
 # Purpose: Ensure reproducibility and stable execution
