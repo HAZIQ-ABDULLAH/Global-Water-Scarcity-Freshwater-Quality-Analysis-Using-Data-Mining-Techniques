@@ -119,3 +119,6 @@ Data-driven evidence supports global water sustainability challenges
 
 📄 Detailed project report is available in PDF format.
 
+📊 Key model evaluation visuals are available in the outputs/ folder.
+
+
