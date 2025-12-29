@@ -1,8 +1,3 @@
-# Generated from: Global Water Scarcity & Freshwater Quality Analysis Using Data Mining Techniques (1).ipynb
-# Converted at: 2025-12-25T18:31:59.894Z
-# Next step (optional): refactor into modules & generate tests with RunCell
-# Quick start: pip install runcell
-
 # ============================================================
 # STEP 1: ENVIRONMENT SETUP & LIBRARY IMPORTS
 # Purpose: Ensure reproducibility and stable execution
@@ -37,16 +32,17 @@ sns.set_context("notebook")
 # ============================================================
 
 water_quality = pd.read_csv(
-    "C:/Users/LAPTOP INSIDE/Downloads/Global water scarcity and fresh water availability data mining project/Kaggal dataset of water quality/water_potability.csv"
+    "C:/Users/LAPTOP INSIDE/OneDrive/Desktop/Global-Water-Scarcity-Project/water_potability.csv"
 )
 
+
 water_stress = pd.read_csv(
-    "C:/Users/LAPTOP INSIDE/Downloads/Global water scarcity and fresh water availability data mining project/WORLD BANK DATASET OF WATER STRESS/API_ER.H2O.FWST.ZS_DS2_en_csv_v2_4443.csv",
+    "C:/Users/LAPTOP INSIDE/OneDrive/Desktop/Global-Water-Scarcity-Project/Water scarcity.csv",
     skiprows=4
 )
 
 metadata_indicator = pd.read_csv(
-    "C:/Users/LAPTOP INSIDE/Downloads/Global water scarcity and fresh water availability data mining project/WORLD BANK DATASET OF WATER STRESS/Metadata_Indicator_API_ER.H2O.FWST.ZS_DS2_en_csv_v2_4443.csv"
+    "C:/Users/LAPTOP INSIDE/OneDrive/Desktop/Global-Water-Scarcity-Project/Metadata_Indicator.csv"
 )
 
 
