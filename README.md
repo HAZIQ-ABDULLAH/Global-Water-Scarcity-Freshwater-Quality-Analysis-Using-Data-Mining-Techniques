@@ -116,3 +116,6 @@ Multiple countries show extreme water stress, signaling urgent concern
 Clustering helps classify countries into risk categories
 
 Data-driven evidence supports global water sustainability challenges
+
+📄 Detailed project report is available in PDF format.
+
