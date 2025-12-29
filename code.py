@@ -157,6 +157,7 @@ sns.heatmap(
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.title("Confusion Matrix – Water Potability")
+plt.savefig("outputs/confusion_matrix.png")
 plt.show()
 
 # Feature Importance
@@ -169,6 +170,8 @@ plt.figure(figsize=(6,4))
 feature_importance.plot(kind="bar")
 plt.title("Feature Importance for Water Potability")
 plt.ylabel("Importance Score")
+plt.savefig("outputs/feature_importance.png")
+
 plt.show()
 
 
@@ -189,6 +192,7 @@ plt.plot(range(2,6), inertia, marker="o")
 plt.xlabel("Number of Clusters")
 plt.ylabel("Inertia")
 plt.title("Elbow Method for Optimal Clusters")
+plt.savefig("outputs/elbow_method.png")
 plt.show()
 
 
@@ -235,6 +239,7 @@ sns.scatterplot(
 plt.title("Country Clusters Based on Water Stress Levels")
 plt.xlabel("Water Stress (%)")
 plt.ylabel("Cluster Group")
+plt.savefig("outputs/water_stress_clusters.png")
 plt.show()
 
 
