@@ -1,71 +1,118 @@
 🌍 Global Water Scarcity & Freshwater Quality Analysis
+Using Data Mining & Machine Learning Techniques
+📌 Project Overview
 
-Using Data Mining Techniques
+This project analyzes global freshwater quality and water stress levels using real-world datasets from Kaggle and the World Bank.
+The objective is to apply data mining techniques to:
 
-📌 Overview
+Predict water potability (safe vs unsafe)
 
-This project applies data mining techniques to analyze freshwater quality and global water scarcity using real-world datasets. It combines classification and clustering to extract meaningful environmental insights.
+Identify countries facing severe water stress
+
+Extract actionable insights for environmental and policy awareness
+
+The project follows a complete data science pipeline, making it suitable for academic evaluation and professional portfolios.
 
 🎯 Objectives
 
-Classify water samples as potable or non-potable
+Analyze physicochemical parameters affecting water potability
 
-Analyze global water stress at the country level
+Build a classification model to predict potable water
 
-Group countries based on water stress severity
+Cluster countries based on water stress severity
 
-Extract actionable insights using data mining methods
+Visualize patterns and extract meaningful insights
 
-🧠 Techniques Used
+📂 Datasets Used
+1. Water Quality Dataset (Kaggle)
 
-Random Forest → Water potability classification
+Contains chemical and physical parameters such as:
 
-K-Means Clustering → Country-wise water stress grouping
+pH, Hardness, Solids, Chloramines, Sulfate, Conductivity, TOC, Turbidity
 
-Min-Max Scaling → Feature normalization
+Target variable: Potability (0 = Not Safe, 1 = Safe)
 
-Evaluation → Accuracy, Confusion Matrix, Silhouette Score
+2. Global Water Stress Dataset (World Bank)
 
-📊 Datasets
+Indicator: Freshwater withdrawal as % of renewable resources
 
-Water Potability Dataset (Kaggle)
+Year used: 2022
 
-Physicochemical properties of water
+Source: World Bank Open Data
 
-Target: Potability (Safe / Unsafe)
+3. Metadata
 
-World Bank Water Stress Dataset
+Official indicator definitions from World Bank for interpretation
 
-Freshwater withdrawal (% of available freshwater)
+🛠️ Tools & Technologies
 
-Latest year: 2022
+Python
 
-🛠 Tools
+Pandas, NumPy
 
-Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn
+Matplotlib, Seaborn
 
-⚙️ Workflow
+Scikit-learn
 
-Data loading and cleaning
+Random Forest Classifier
+
+K-Means Clustering
+
+🔄 Project Workflow
+
+Environment setup & reproducibility
+
+Data loading from multiple sources
+
+Data cleaning & missing value handling
 
 Exploratory Data Analysis (EDA)
 
-Feature scaling
+Feature scaling (Min-Max Normalization)
 
-Random Forest classification
+Classification using Random Forest
 
-Model evaluation & feature importance
+Model evaluation (Accuracy, Precision, Recall, F1-score)
+
+Feature importance analysis
 
 Elbow method for cluster selection
 
-K-Means clustering
+Clustering countries using K-Means
 
-Cluster interpretation and insights
+Cluster interpretation & visualization
 
-📈 Key Insights
+Extraction of high-risk countries
 
-Chemical parameters significantly influence water potability
+🤖 Machine Learning Models
+🔹 Random Forest Classifier
 
-Countries can be grouped into low, moderate, and high water stress
+Purpose: Predict water potability
 
-High-stress clusters highlight regions at severe freshwater risk
+Handles non-linearity and feature importance well
+
+Class imbalance handled using class_weight="balanced"
+
+🔹 K-Means Clustering
+
+Purpose: Group countries by water stress severity
+
+Clusters:
+
+Low Water Stress
+
+Moderate Water Stress
+
+High Water Stress
+
+Evaluated using Silhouette Score
+
+📊 Key Results & Insights
+
+Certain chemical parameters have strong influence on water safety
+
+Multiple countries show extreme water stress, signaling urgent concern
+
+Clustering helps classify countries into risk categories
+
+Data-driven evidence supports global water sustainability challenges
