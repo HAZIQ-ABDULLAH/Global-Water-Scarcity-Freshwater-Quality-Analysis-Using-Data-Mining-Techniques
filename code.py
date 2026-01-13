@@ -28,13 +28,11 @@ sns.set_context("notebook")
 
 # ============================================================
 # STEP 2: DATA LOADING (RAW DATA INGESTION)
-# Purpose: Load datasets from original sources (paths unchanged)
 # ============================================================
 
 water_quality = pd.read_csv(
     "C:/Users/LAPTOP INSIDE/OneDrive/Desktop/Global-Water-Scarcity-Project/water_potability.csv"
 )
-
 
 water_stress = pd.read_csv(
     "C:/Users/LAPTOP INSIDE/OneDrive/Desktop/Global-Water-Scarcity-Project/Water scarcity.csv",
@@ -48,7 +46,6 @@ metadata_indicator = pd.read_csv(
 
 # ============================================================
 # STEP 3: DATA UNDERSTANDING & QUALITY CHECK
-# Purpose: Inspect structure and missing values
 # ============================================================
 
 print("Water Quality Dataset Shape:", water_quality.shape)
@@ -60,13 +57,12 @@ print(water_quality.isnull().sum())
 
 # ============================================================
 # STEP 4: DATA CLEANING & PREPROCESSING
-# Purpose: Handle missing data and select analytical features
 # ============================================================
 
-# Fill missing numerical values using column mean
+# Fill missing numerical values with column mean
 water_quality.fillna(water_quality.mean(), inplace=True)
 
-# Select latest available year for global water stress
+# Select latest year for global water stress
 water_stress_clean = water_stress[['Country Name', '2022']].copy()
 water_stress_clean.rename(
     columns={'2022': 'Water_Stress_Percent'},
@@ -77,10 +73,9 @@ water_stress_clean.dropna(inplace=True)
 
 # ============================================================
 # STEP 5: EXPLORATORY DATA ANALYSIS (EDA)
-# Purpose: Understand distributions and relationships
 # ============================================================
 
-# Correlation heatmap for water quality features
+# Correlation heatmap
 plt.figure(figsize=(8,6))
 sns.heatmap(
     water_quality.corr(),
@@ -88,6 +83,7 @@ sns.heatmap(
     linewidths=0.5
 )
 plt.title("Correlation Matrix of Water Quality Parameters")
+plt.savefig("outputs/correlation_heatmap.png")
 plt.show()
 
 # Water stress distribution
@@ -95,12 +91,12 @@ plt.figure(figsize=(6,4))
 sns.boxplot(y=water_stress_clean['Water_Stress_Percent'])
 plt.title("Global Water Stress Distribution (%)")
 plt.ylabel("Water Stress (%)")
+plt.savefig("outputs/water_stress_distribution.png")
 plt.show()
 
 
 # ============================================================
 # STEP 6: FEATURE SCALING
-# Purpose: Normalize features for fair model learning
 # ============================================================
 
 X = water_quality.drop('Potability', axis=1)
@@ -112,7 +108,6 @@ X_scaled = scaler.fit_transform(X)
 
 # ============================================================
 # STEP 7: CLASSIFICATION MODEL (RANDOM FOREST)
-# Purpose: Predict water potability (safe vs unsafe)
 # ============================================================
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -133,14 +128,11 @@ rf_model.fit(X_train, y_train)
 
 # ============================================================
 # STEP 8: MODEL EVALUATION & INTERPRETATION
-# Purpose: Measure performance and extract insights
 # ============================================================
 
 y_pred = rf_model.predict(X_test)
 
-print("\nClassification Accuracy:",
-      accuracy_score(y_test, y_pred))
-
+print("\nClassification Accuracy:", accuracy_score(y_test, y_pred))
 print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
 
@@ -148,12 +140,7 @@ print(classification_report(y_test, y_pred))
 cm = confusion_matrix(y_test, y_pred)
 
 plt.figure(figsize=(5,4))
-sns.heatmap(
-    cm,
-    annot=True,
-    fmt="d",
-    cmap="Blues"
-)
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.title("Confusion Matrix – Water Potability")
@@ -171,13 +158,11 @@ feature_importance.plot(kind="bar")
 plt.title("Feature Importance for Water Potability")
 plt.ylabel("Importance Score")
 plt.savefig("outputs/feature_importance.png")
-
 plt.show()
 
 
 # ============================================================
 # STEP 9: ELBOW METHOD FOR CLUSTER SELECTION
-# Purpose: Justify optimal number of clusters
 # ============================================================
 
 inertia = []
@@ -197,8 +182,7 @@ plt.show()
 
 
 # ============================================================
-# STEP 10: K-MEANS CLUSTERING (GLOBAL WATER STRESS)
-# Purpose: Group countries by stress severity
+# STEP 10: K-MEANS CLUSTERING
 # ============================================================
 
 kmeans = KMeans(n_clusters=3, random_state=42)
@@ -215,7 +199,6 @@ print("Silhouette Score:",
 
 # ============================================================
 # STEP 11: CLUSTER INTERPRETATION & VISUALIZATION
-# Purpose: Meaningful grouping of countries
 # ============================================================
 
 cluster_labels = {
@@ -245,7 +228,6 @@ plt.show()
 
 # ============================================================
 # STEP 12: KEY INSIGHTS & HIGH-RISK COUNTRIES
-# Purpose: Extract actionable conclusions
 # ============================================================
 
 top_countries = water_stress_clean.sort_values(
@@ -256,6 +238,21 @@ top_countries = water_stress_clean.sort_values(
 print("\nTop 15 Water-Stressed Countries:")
 print(top_countries[['Country Name', 'Water_Stress_Percent', 'Stress_Level']])
 
+plt.figure(figsize=(7,4))
+sns.barplot(
+    data=top_countries,
+    x='Water_Stress_Percent',
+    y='Country Name',
+    palette='Reds_r'
+)
+plt.title("Top 15 Most Water-Stressed Countries (2022)")
+plt.xlabel("Water Stress (%)")
+plt.ylabel("Country")
+plt.tight_layout()
+plt.savefig("outputs/top_15_water_stressed.png")
+plt.show()
+
+# Metadata Explanation
 if 'LongDefinition' in metadata_indicator.columns:
     print("\nWorld Bank Indicator Description:")
     print(metadata_indicator.loc[0, 'LongDefinition'])
