@@ -15,6 +15,7 @@ Freshwater is one of the most stressed resources on the planet, yet the two side
 
 ## Results
 - Random Forest achieved 66% accuracy on the held-out test set.
+(the model favors the majority class; recall on potable samples is low despite balanced class weighting.)
 - Silhouette score of 0.95 confirms well-separated water-stress clusters.
 
 - Random Forest classifier evaluated on a held-out 20% test split (stratified), with accuracy, precision/recall/F1, and a confusion matrix saved to `outputs/confusion_matrix.png`.
