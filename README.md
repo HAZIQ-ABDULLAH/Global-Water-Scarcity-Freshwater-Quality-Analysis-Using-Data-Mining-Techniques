@@ -14,6 +14,8 @@ Freshwater is one of the most stressed resources on the planet, yet the two side
 - **Clustering — K-Means**: groups countries into Low / Moderate / High water-stress categories based on the 2022 World Bank "freshwater withdrawal as % of renewable resources" indicator. Optimal cluster count chosen via the elbow method and validated with a silhouette score. Cluster labels are ranked by centroid value so "High Water Stress" always corresponds to the highest-withdrawal cluster, rather than an arbitrary KMeans label.
 
 ## Results
+- Random Forest achieved 66% accuracy on the held-out test set.
+- Silhouette score of 0.95 confirms well-separated water-stress clusters.
 
 - Random Forest classifier evaluated on a held-out 20% test split (stratified), with accuracy, precision/recall/F1, and a confusion matrix saved to `outputs/confusion_matrix.png`.
 - Feature importance ranking (`outputs/feature_importance.png`) highlights which chemical parameters most influence potability predictions.
@@ -53,7 +55,6 @@ pip install -r requirements.txt
 python code.py
 ```
 
-Outputs (charts) are saved to the `outputs/` folder.
 
 ## Data Sources
 
